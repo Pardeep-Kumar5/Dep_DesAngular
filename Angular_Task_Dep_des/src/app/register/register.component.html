@@ -1,0 +1,80 @@
+<br>
+<h2 class="text-primary text-center">This is Register Page</h2>
+<div class="m-5">
+<button class="btn btn-info p-2 m-2 " data-toggle="modal" data-target="#newmodal"> 
+    <i class="fa fa-plus">
+        New Employee
+      </i>
+</button>
+<div class="border">
+    <table class="table table-striped table-border">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Department</th>
+                <th>Designation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+         <tr *ngFor="let register of RegisterList">
+        <td>{{register.name}}</td>
+        <td>{{register.address}}</td>
+        <td>{{register.department.name}}</td>
+        <td>{{register.designation.name}}</td>
+         </tr>
+        </tbody>
+    </table>
+
+    
+<!-- Save Code -->
+<div class="modal" tabindex="-1" role="dialog" id="newmodal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title btn btn-info">
+           Add New Employee</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <div  class="form-group row">
+          <label for="txtname" class="col-sm-4"> Name</label>
+          <div class="col-sm-8">
+              <input id="txtname"[(ngModel)]="NewRegister.name"   type="text" name="Name" placeholder="Enter Name" class="form-control">
+          </div>
+       </div>
+       <div  class="form-group row">
+          <label for="txtaddress" class="col-sm-4"> Address</label>
+          <div class="col-sm-8">
+              <input id="txtaddress"[(ngModel)]="NewRegister.address" type="text" name="Address" placeholder="Enter Address" class="form-control">
+          </div>
+       </div>
+       <div class="form-group row">
+        <label class="col-sm-4">Department Name</label>
+        <select class="form-control col-sm-8">
+            <option value="0">Select Department</option>
+            <input [(ngModel)]="NewRegister.department" type="text" name="department" placeholder="Enter department" class="form-control">
+
+            <option  *ngFor="let department of DepartmentList"  [value]="department.id">{{department.name}}</option>
+        </select>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-4">Designation Name</label>
+      <select class="form-control col-sm-8">
+          <option value="0">Select Designation</option>
+          <input [(ngModel)]="NewRegister.designation.name" type="text" name="department" placeholder="Enter department" class="form-control">
+
+          <option  *ngFor="let designation of DesignationList" [value]="designation.id">{{designation.name}}</option>
+      </select>
+  </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button"(click)="SaveClick()" data-dismiss="modal" class="btn btn-primary">Save </button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
